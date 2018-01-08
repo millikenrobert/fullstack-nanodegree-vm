@@ -1,0 +1,26 @@
+<html>
+
+<body>
+    <h1>Allsss restaaurants
+    <p>
+Number is {{restaurants.len()}}
+</p>
+</h1> {% with messages = get_flashed_messages() %} {% if messages %}
+
+    <ul>
+        {% for message in messages %}
+        <li> <strong> {{ message }} </strong> </li>
+        {% endfor %}
+    </ul>
+
+
+    {% endif %} {% endwith %} {% for restaurant in restaurants %}
+    <p>{{restaurant.name}}
+        <br/>
+
+        <a href='#'>Edit Restauraunt</a>
+        <br/>
+        <a href='#'>Delete Restaurant</a> {% endfor %}
+</body>
+
+</html>

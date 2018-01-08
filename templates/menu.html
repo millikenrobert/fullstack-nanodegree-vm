@@ -1,0 +1,43 @@
+<html>
+<head>
+ </head>
+<body>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+
+        <ul>
+        {% for message in messages %}
+            <li> <strong> {{ message }} </strong> </li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
+
+
+<h1> Menu for {{restaurant.name}} </h1>
+
+{% if items|length > 0 %}
+{% for item in items%}
+
+<p>{{item.name}} -{{item.price}}<br/>
+<a href = "{{ url_for('editMenuItem',restaurant_id = restaurant.id, menu_id = item.id )}}"> Edit </a>|
+<a href = "{{ url_for('deleteMenuItem',restaurant_id = restaurant.id, menu_id = item.id )}}"> Delete </a>
+</p>
+
+
+{% endfor %}
+<a href="{{ url_for('newMenuItem',restaurant_id =restaurant.id  )}}"> Create a Menu Item </a>
+
+ {% else %}
+        <p> No Menu Items available. Add one here:
+            <a href="{{ url_for('newMenuItem',restaurant_id =restaurant.id)}}">  Create your first Menu Item</a> {% endif %}
+<p>
+
+
+<a href = "{{ url_for('showRestaurants')}}"> Return to list of Restaurants </a>
+
+</p>
+</body>
+</html>
+
